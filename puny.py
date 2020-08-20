@@ -22,15 +22,6 @@ if __name__ == "__main__":
         if args.domain:
             logging.debug('Using {} as input and {} as output'.format(args.domain, args.output.name))
             user_input = args.domain
-            # if args.reverse:
-            #     output = args.domain.encode('utf-8')
-            #     try:
-            #         print(output.decode('idna'))
-            #     except UnicodeDecodeError:
-            #         logging.error('Wrong input')
-            # else:
-            #     output = args.domain.encode('idna')
-            #     print(output.decode())
         else:
             logging.debug('Using {} as input and {} as output'.format(args.input.name, args.output.name))
             if args.input.name == '<stdin>':
