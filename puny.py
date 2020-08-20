@@ -25,9 +25,9 @@ if __name__ == "__main__":
         else:
             logging.debug('Using {} as input and {} as output'.format(args.input.name, args.output.name))
             if args.input.name == '<stdin>':
-                    logging.debug('Enter domain per line, and press ctrl+d')
+                    logging.debug('Enter domains divided by space')
             with args.input as sf:
-                user_input = sf.read().splitlines()
+                user_input = sf.readline().split()
                 logging.debug('Read from input: ' + ' '.join(user_input))
         with args.output as df:
             if args.reverse:
