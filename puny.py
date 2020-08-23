@@ -24,10 +24,12 @@ if __name__ == "__main__":
             user_input = args.domain
         else:
             logging.debug('Using {} as input and {} as output'.format(args.input.name, args.output.name))
-            if args.input.name == '<stdin>':
-                    logging.debug('Enter domains divided by space')
             with args.input as sf:
-                user_input = sf.readline().split()
+                if args.input.name == '<stdin>':
+                    logging.debug('Enter domains divided by space')
+                    user_input = sf.readline().split()
+                else:
+                    user_input = sf.read().splitlines()
                 logging.debug('Read from input: ' + ' '.join(user_input))
         with args.output as df:
             if args.reverse:
