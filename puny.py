@@ -16,7 +16,7 @@ if __name__ == "__main__":
         parser.add_argument('-o', '--output', nargs='?', type=argparse.FileType('w'),
                             default=sys.stdout, help='output file (default stdout)')
         parser.add_argument('-r', '--reverse', action='store_true', help='decode from idna')
-        parser.add_argument('-V', '--version', action='version', version='%(prog)s 0.2')
+        parser.add_argument('-V', '--version', action='version', version='%(prog)s 0.3')
         group = parser.add_mutually_exclusive_group()
         group.add_argument('-d', '--debug', action='store_true', help='debug output')
         group.add_argument('-q', '--quiet', action='store_true', help='suppress warnings')
