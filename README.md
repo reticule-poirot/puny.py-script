@@ -23,9 +23,8 @@ exāmple2.com
 ```
 
 ```
- ./puny.py -h          
-usage: puny.py [-h] [-i [INPUT]] [-o [OUTPUT]] [-r] [-V] [-d]
-               [domain [domain ...]]
+./puny.py -h
+usage: puny.py [-h] [-i [INPUT]] [-o [OUTPUT]] [-r] [-V] [-d | -q] [domain [domain ...]]
 
 Encode to/decode from idna
 
@@ -41,4 +40,5 @@ optional arguments:
   -r, --reverse         decode from idna
   -V, --version         show program's version number and exit
   -d, --debug           debug output
+  -q, --quiet           suppress warnings
 ```
