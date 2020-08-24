@@ -4,6 +4,8 @@ import argparse
 import sys
 import logging
 
+logger = logging.getLogger('punny.py')
+logging.basicConfig(format='%(name)s: %(message)s')
 
 if __name__ == "__main__":
     try:
@@ -18,34 +20,34 @@ if __name__ == "__main__":
         parser.add_argument('-d', '--debug', action='store_true', help='debug output')
         args = parser.parse_args()
         if args.debug:
-            logging.basicConfig(level=logging.DEBUG)
+            logger.level = logging.DEBUG
         if args.domain:
-            logging.debug('Using %s as input and %s as output', args.domain, args.output.name)
+            logger.debug('Using %s as input and %s as output', args.domain, args.output.name)
             user_input = args.domain
         else:
-            logging.debug('Using %s as input and %s as output', args.input.name, args.output.name)
+            logger.debug('Using %s as input and %s as output', args.input.name, args.output.name)
             with args.input as sf:
                 if args.input.name == '<stdin>':
-                    logging.debug('Enter domains divided by space')
+                    logger.debug('Enter domains divided by space')
                     user_input = sf.readline().split()
                 else:
                     user_input = sf.read().splitlines()
-                logging.debug('Read from input: %s', ' '.join(user_input))
+                logger.debug('Read from input: %s', ' '.join(user_input))
         with args.output as df:
             if args.reverse:
                 user_input = [l.encode('utf-8') for l in user_input]
                 try:
                     user_input = [l.decode('idna') for l in user_input]
                 except UnicodeDecodeError:
-                    logging.error('Wrong input')
+                    logger.error('Wrong input')
                     sys.exit(1)
-                logging.debug('Write to output: %s', ' '.join(user_input))
+                logger.debug('Write to output: %s', ' '.join(user_input))
                 df.writelines(l + '\n' for l in user_input)
             else:
                 user_input = [l.encode('idna') for l in user_input]
                 user_input = [l.decode('utf-8') for l in user_input]
-                logging.debug('Write to output: %s', ' '.join(user_input))
+                logger.debug('Write to output: %s', ' '.join(user_input))
                 df.writelines(l + '\n' for l in user_input)
     except KeyboardInterrupt:
-        logging.info('Abort')
+        logger.info('Abort')
         sys.exit(1)
